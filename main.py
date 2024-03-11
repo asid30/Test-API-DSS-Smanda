@@ -170,7 +170,7 @@ def prediksi_random():
 # testing 2
 @app.get("/")
 def welcome():
-    return {"Teks : Api siap digunakan"}
+    return {"Teks" : "Api siap digunakan"}
 
 
 # to start API
