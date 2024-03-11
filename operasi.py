@@ -216,16 +216,16 @@ def tabel_kompetensi_minat(pilihan: list, DataFrame):
         DataFrame["{ngodong}".format(ngodong=mapel[0])]["total_prediksi_terbaik"] * 0.4
     )
     # second choice add 30% total points
-    DataFrame["{ngodong}".format(ngodong=mapel[0])]["total_prediksi_terbaik"] += (
-        DataFrame["{ngodong}".format(ngodong=mapel[0])]["total_prediksi_terbaik"] * 0.3
+    DataFrame["{ngodong}".format(ngodong=mapel[1])]["total_prediksi_terbaik"] += (
+        DataFrame["{ngodong}".format(ngodong=mapel[1])]["total_prediksi_terbaik"] * 0.3
     )
     # third choice add 20% total points
-    DataFrame["{ngodong}".format(ngodong=mapel[1])]["total_prediksi_terbaik"] += (
-        DataFrame["{ngodong}".format(ngodong=mapel[1])]["total_prediksi_terbaik"] * 0.2
+    DataFrame["{ngodong}".format(ngodong=mapel[2])]["total_prediksi_terbaik"] += (
+        DataFrame["{ngodong}".format(ngodong=mapel[2])]["total_prediksi_terbaik"] * 0.2
     )
     # forth choice add 10% from total points
-    DataFrame["{ngodong}".format(ngodong=mapel[2])]["total_prediksi_terbaik"] += (
-        DataFrame["{ngodong}".format(ngodong=mapel[2])]["total_prediksi_terbaik"] * 0.1
+    DataFrame["{ngodong}".format(ngodong=mapel[3])]["total_prediksi_terbaik"] += (
+        DataFrame["{ngodong}".format(ngodong=mapel[3])]["total_prediksi_terbaik"] * 0.1
     )
     DataFrame = DataFrame.T
     # sorting DESC
