@@ -161,11 +161,16 @@ def proses_nilai(data: MinatInput, items: List[PoinItem]):
 
 # testing
 @app.get("/test")
-def prediksi():
+def prediksi_random():
     ds = op.data_nilai_siswa_random()
     df = op.tabel_korelasi_normalisasi()
     hasil_perkalian_df_dan_ds = op.tabel_kompetensi(df, ds)
     return op.dataframe_to_dict_converter(hasil_perkalian_df_dan_ds)
+
+# testing 2
+@app.get("/")
+def welcome():
+    return {"Teks : Api siap digunakan"}
 
 
 # to start API
