@@ -202,26 +202,30 @@ def tabel_kompetensi_minat(pilihan: list, DataFrame):
         "Bahasa Prancis",  # 9
         "Bahasa Jepang",  # 10
     ]
-    mapel = ["Tidak ada", "Tidak ada", "Tidak ada"]
-    for i in range(3):
+    mapel = ["Tidak ada", "Tidak ada", "Tidak ada", "Tidak ada"]
+    for i in range(4):
         mapel_index = int(
             pilihan[i] - 1
         )  # Mendapatkan indeks mata pelajaran berdasarkan pilihan input
         mapel[i] = (
             subjects[mapel_index] if 0 <= mapel_index < len(subjects) else "Tidak ada"
         )
-    # first choice add 30% total points
+    # first choice add 40% total points
     DataFrame = DataFrame.T
     DataFrame["{ngodong}".format(ngodong=mapel[0])]["total_prediksi_terbaik"] += (
-        DataFrame["{ngodong}".format(ngodong=mapel[0])]["total_prediksi_terbaik"] * 0.3
+        DataFrame["{ngodong}".format(ngodong=mapel[0])]["total_prediksi_terbaik"] * 0.4
     )
-    # first choice add 20% total points
+    # second choice add 30% total points
     DataFrame["{ngodong}".format(ngodong=mapel[1])]["total_prediksi_terbaik"] += (
-        DataFrame["{ngodong}".format(ngodong=mapel[1])]["total_prediksi_terbaik"] * 0.2
+        DataFrame["{ngodong}".format(ngodong=mapel[1])]["total_prediksi_terbaik"] * 0.3
     )
-    # first choice add 10% from total points
+    # third choice add 20% total points
     DataFrame["{ngodong}".format(ngodong=mapel[2])]["total_prediksi_terbaik"] += (
-        DataFrame["{ngodong}".format(ngodong=mapel[2])]["total_prediksi_terbaik"] * 0.1
+        DataFrame["{ngodong}".format(ngodong=mapel[2])]["total_prediksi_terbaik"] * 0.2
+    )
+    # forth choice add 10% from total points
+    DataFrame["{ngodong}".format(ngodong=mapel[3])]["total_prediksi_terbaik"] += (
+        DataFrame["{ngodong}".format(ngodong=mapel[3])]["total_prediksi_terbaik"] * 0.1
     )
     DataFrame = DataFrame.T
     # sorting DESC

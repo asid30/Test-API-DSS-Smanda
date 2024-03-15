@@ -37,7 +37,7 @@ class MinatInput(BaseModel):
     pilihan1: int
     pilihan2: int
     pilihan3: int
-
+    pilihan4: int
 
 # base model from competition calculation
 class WajibInput(BaseModel):
@@ -74,11 +74,13 @@ def get_mpp(
     pilihan1: float = Form(...),
     pilihan2: float = Form(...),
     pilihan3: float = Form(...),
+    pilihan4: float = Form(...),
 ):
     daftar = []
     daftar.append(op.index_to_mapel_minat(int(pilihan1) - 1))
     daftar.append(op.index_to_mapel_minat(int(pilihan2) - 1))
     daftar.append(op.index_to_mapel_minat(int(pilihan3) - 1))
+    daftar.append(op.index_to_mapel_minat(int(pilihan4) - 1))
     return daftar
 
 
@@ -123,6 +125,7 @@ def proses_nilai(data: MinatInput, items: List[PoinItem]):
     pilihan1 = data.pilihan1
     pilihan2 = data.pilihan2
     pilihan3 = data.pilihan3
+    pilihan4 = data.pilihan4
     PAI = data.PAI
     Pendidikan_Pancasila = data.Pendidikan_Pancasila
     Bahasa_Indonesia = data.Bahasa_Indonesia
@@ -151,18 +154,23 @@ def proses_nilai(data: MinatInput, items: List[PoinItem]):
 
     hasil_perkalian_df_dan_ds = op.tabel_kompetensi(df, ds)
     hasil_prediksi_dengan_minat = op.tabel_kompetensi_minat(
-        [pilihan1, pilihan2, pilihan3], hasil_perkalian_df_dan_ds
+        [pilihan1, pilihan2, pilihan3, pilihan4], hasil_perkalian_df_dan_ds
     )
     return op.dataframe_to_dict_converter(hasil_prediksi_dengan_minat)
 
 
 # testing
 @app.get("/test")
-def prediksi():
+def prediksi_random():
     ds = op.data_nilai_siswa_random()
     df = op.tabel_korelasi_normalisasi()
     hasil_perkalian_df_dan_ds = op.tabel_kompetensi(df, ds)
     return op.dataframe_to_dict_converter(hasil_perkalian_df_dan_ds)
+
+# testing 2
+@app.get("/")
+def welcome():
+    return {"Teks" : "Api siap digunakan"}
 
 
 # to start API
